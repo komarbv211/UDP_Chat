@@ -1,0 +1,60 @@
+﻿<Window x:Class="UDP_ChatUser.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AdminWindow" Height="500" Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- User Functionality -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0">
+                <Label FontWeight="Bold">Message:</Label>
+                <Button Click="LeaveButtonClick" Width="100" DockPanel.Dock="Right" Background="IndianRed">Leave</Button>
+                <Button Click="JoinButtonClick" Width="100" DockPanel.Dock="Right" Background="LightGreen">Join</Button>
+                <Button Click="SendMessageButtonClick" Width="100" DockPanel.Dock="Right" Background="DarkCyan">Send</Button>
+                <TextBox FontSize="16" VerticalContentAlignment="Center" Name="txtBox"></TextBox>
+            </DockPanel>
+            <ListBox Grid.Row="1" Name="list" HorizontalContentAlignment="Stretch">
+            </ListBox>
+
+        </Grid>
+        <!-- Admin Functionality -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Search by Email -->
+            <DockPanel Grid.Row="0">
+                <Label FontWeight="Bold" Content="Search by ID:"/>
+                <TextBox Name="SearchIdTextBox_Admin" Width="166" Margin="5"/>
+                <Button Content="Search" Click="SearchByIdButton_Click_Admin" Margin="5" Background="DarkCyan"/>
+            </DockPanel>
+            <DockPanel Grid.Row="1">
+                <Button Name="GrantAdminRightsButton" Margin="5" Content="Grant Admin Rights" Width="250" DockPanel.Dock="Left" Click="GrantAdminRightsButton_Click"/>
+                <Button Name="RemoveAdministratorRights_Button" Margin="5" DockPanel.Dock="Top" Content="Remove Administrator Rights" Width="250" Click="RemoveAdministratorRights_Button_Click"/>
+            </DockPanel>
+            <DockPanel Grid.Row="2">
+                <Button Name="DeleteUserButton" Margin="5" Content="Delete User" Width="250" DockPanel.Dock="Left"  Click="DeleteUserButton_Click"/>
+                <Button Name="ClearAdminPanelButton" Margin="5" Content="Clear Admin Panel" Width="250" DockPanel.Dock="Right" Click="ClearAdminPanelButton_Click"/>
+            </DockPanel>
+            <DockPanel Grid.Row="3">
+                <Button Name="ListUserButton" Margin="5" Content="List User"  Click="ListUserButton_Click"/>
+            </DockPanel>
+            <DockPanel Grid.Row="4">
+                <ListBox Name="UserDataListBox_Admin" Grid.Row="1" Margin="5"></ListBox>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</Window>
