@@ -15,6 +15,7 @@ namespace UDP_ChatDataBase.Entity
 
         public int UsersId { get; set; }
 
+
         public Users Users { get; set; }
 
         public override string ToString()
@@ -22,6 +23,5 @@ namespace UDP_ChatDataBase.Entity
             string formattedTimestamp = Timestamp.ToString("dd-MM-yyyy HH:mm:ss");
             return $"<Message from {Users.FullName} {Users.Email}>\n<{formattedTimestamp}>\t {Content}";
         }
-
     }
 }

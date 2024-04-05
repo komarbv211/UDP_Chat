@@ -12,7 +12,7 @@ namespace UDP_ChatUser
         public int Port { get; set; }
         public int Id { get; set; }
 
-        private bool isListening = true;
+        private bool isListening = false;
 
         IPEndPoint remoteEndPoint;
 
@@ -25,7 +25,6 @@ namespace UDP_ChatUser
             IpAddress = ipAddres;
             Port = port;
             remoteEndPoint = new IPEndPoint(ipAddres, port);
-
         }
 
         private async Task<string> SendAdminCommand(string command)
@@ -106,7 +105,6 @@ namespace UDP_ChatUser
             {
                 MessageBox.Show("Please enter a valid user ID.");
             }
-
         }
 
         private async void DeleteUserButton_Click(object sender, RoutedEventArgs e)
@@ -123,14 +121,12 @@ namespace UDP_ChatUser
             SendMessage("<join>");
             isListening = true;
             Listen();
-
         }
 
         private void LeaveButtonClick(object sender, RoutedEventArgs e)
         {
             SendMessage("<leave>");
             isListening = false;
-
         }
         private void SendMessageButtonClick(object sender, RoutedEventArgs e)
         {
@@ -139,42 +135,40 @@ namespace UDP_ChatUser
                 MessageBox.Show("Enter a message!");
                 return;
             }
-            SendMessage(txtBox.Text);
-            SendMessageDataBase(txtBox.Text);
-
+            if (!isListening)
+            {
+                MessageBox.Show("You are disconnected from the chat.");
+                txtBox.Clear();
+                return;
+            }
+            else
+            {
+                SendMessage(txtBox.Text);
+                SendMessageDataBase(txtBox.Text);
+            }
         }
-
 
         private async void Listen()
         {
-            //using (UdpClient client = new UdpClient())
-            //{
-                while (isListening)
-                {
-                    var result = await client.ReceiveAsync();
-                    string msg = Encoding.Unicode.GetString(result.Buffer);
-                    list.Items.Add(msg);
-                }
-            //}
+            while (isListening)
+            {
+                var result = await client.ReceiveAsync();
+                string msg = Encoding.Unicode.GetString(result.Buffer);
+                list.Items.Add(msg);
+                txtBox.Clear();
+            }
         }
         private void SendMessage(string msg)
         {
-            //using (UdpClient client = new UdpClient())
-            //{
-
-                byte[] bytes = Encoding.Unicode.GetBytes(msg);
-                client.Send(bytes, bytes.Length, remoteEndPoint);
-            //}
+            byte[] bytes = Encoding.Unicode.GetBytes(msg);
+            client.Send(bytes, bytes.Length, remoteEndPoint);
         }
         private void SendMessageDataBase(string msg)
         {
             string response = "<message>:" + msg + ":" + Id.ToString();
-            //using (UdpClient client = new UdpClient())
-            //{
 
-                byte[] bytes = Encoding.Unicode.GetBytes(response);
-                client.Send(bytes, bytes.Length, remoteEndPoint);
-            //}
+            byte[] bytes = Encoding.Unicode.GetBytes(response);
+            client.Send(bytes, bytes.Length, remoteEndPoint);
         }
 
     }

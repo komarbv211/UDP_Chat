@@ -6,10 +6,8 @@ namespace UDP_ChatDataBase.Context
 {
     public class DbContextChat : DbContext
     {
-
         public DbContextChat() : base() { }
         public DbContextChat(DbContextOptions options) : base(options) { }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -17,7 +15,7 @@ namespace UDP_ChatDataBase.Context
             modelBuilder.Entity<Users>().HasIndex(u => u.Email).IsUnique();
 
             modelBuilder.SeedUsers();
-            modelBuilder.SeedChatMessages();
+            modelBuilder.SeedChatMessages(); 
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

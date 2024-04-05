@@ -19,21 +19,6 @@ mc:Ignorable="d"
             <TextBox FontSize="16" VerticalContentAlignment="Center" Name="txtBox"></TextBox>
         </DockPanel>
         <ListBox Grid.Row="1" Name="list" HorizontalContentAlignment="Stretch">
-            <!--<ListBox.ItemTemplate>
-                <DataTemplate>
-                    <DockPanel>
-                        <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">
-                            <Run Text="from ip: "/>
-                            <Run Text="{Binding IPAddress}"/>
-                        </TextBlock>
-                        <TextBlock>
-                            <Run Text="{Binding Time}"/>
-                            <Run Text=" : "/>
-                            <Run FontSize="16" FontWeight="Bold" Text="{Binding Text}"/>
-                        </TextBlock>
-                    </DockPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>-->
         </ListBox>
     </Grid>
 </Window>

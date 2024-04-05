@@ -51,14 +51,14 @@ namespace UDP_ChatDataBase.Migrations
                         {
                             Id = 1,
                             Content = "Hello World",
-                            Timestamp = new DateTime(2024, 3, 31, 22, 4, 48, 37, DateTimeKind.Local).AddTicks(7021),
+                            Timestamp = new DateTime(2024, 4, 4, 20, 30, 35, 537, DateTimeKind.Local).AddTicks(6295),
                             UsersId = 1
                         },
                         new
                         {
                             Id = 2,
-                            Content = "Hello ",
-                            Timestamp = new DateTime(2024, 3, 31, 22, 4, 48, 37, DateTimeKind.Local).AddTicks(7098),
+                            Content = "Hello",
+                            Timestamp = new DateTime(2024, 4, 4, 20, 30, 36, 537, DateTimeKind.Local).AddTicks(6295),
                             UsersId = 1
                         });
                 });

@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.IO;
 
 namespace UDP_ChatUser
 {
@@ -18,34 +19,65 @@ namespace UDP_ChatUser
         public MainWindow()
         {
             InitializeComponent();
+            Port = 1234;
+
+            string filePath = "IpAddress.txt";
+            if (File.Exists(filePath) && new FileInfo(filePath).Length > 0)
+            {
+                try
+                {
+                    using (StreamReader reader = new StreamReader(filePath))
+                    {
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            IpComboBox.Items.Add(line);
+                        }
+                    }
+                   // IpComboBox.SelectedIndex = 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error reading IP addresses from file: {ex.Message}");
+                }
+            }
+            else
+            {
+                IpComboBox.Items.Add("127.0.0.1");
+                //IpComboBox.SelectedIndex = 0;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (IpTextBox.Text == "")
-                IpTextBox.Text = "127.0.0.1";
-            if (PortTextBox.Text == "")
-                PortTextBox.Text = "1234";
+            if (IpComboBox.Text == "")
+                IpComboBox.Text = "127.0.0.1";
 
-            if (!IPAddress.TryParse(IpTextBox.Text, out IPAddress ipAddress))
+            string ipAddressString = IpComboBox.Text;
+
+            if (!IPAddress.TryParse(ipAddressString, out IPAddress ipAddress))
             {
                 MessageBox.Show("Invalid IPv4 address");
                 return;
             }
+
+            // Встановлення значення для IpAddress
             IpAddress = ipAddress;
 
-            if (!int.TryParse(PortTextBox.Text.Trim(), out int port))
+            string filePath = "IpAddress.txt";
+            try
             {
-                MessageBox.Show("Invalid port number");
+                using (var writer = new System.IO.StreamWriter(filePath))
+                {
+                    writer.WriteLine(ipAddressString);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving IP address: {ex.Message}");
                 return;
             }
-            Port = port;
 
-            if (Port <= 0 || Port > 65535)
-            {
-                MessageBox.Show("Port must be between 0 - 65535");
-                return;
-            }
             Listen();
         }
 

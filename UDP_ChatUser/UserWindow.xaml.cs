@@ -17,7 +17,7 @@ namespace UDP_ChatUser
 
         UdpClient client = new UdpClient();
 
-        private bool isListening = true;
+        private bool isListening = false;
 
         public UserWindow(int id, IPAddress ipAddress, int port)
         {
@@ -32,6 +32,7 @@ namespace UDP_ChatUser
                 var result = await client.ReceiveAsync();
                 string msg = Encoding.Unicode.GetString(result.Buffer);
                 list.Items.Add(msg);
+                txtBox.Clear();
             }
         }
 
@@ -43,8 +44,17 @@ namespace UDP_ChatUser
                 MessageBox.Show("Enter a message!");
                 return;
             }
-            SendMessage(txtBox.Text);
-            SendMessageDataBase(txtBox.Text);
+            if (!isListening)
+            {
+                MessageBox.Show("You are disconnected from the chat.");
+                txtBox.Clear();
+                return;
+            }
+            else
+            {
+                SendMessage(txtBox.Text);
+                SendMessageDataBase(txtBox.Text);
+            }
         }
         public void JoinBtnClick(object sender, RoutedEventArgs e)
         {
@@ -71,4 +81,4 @@ namespace UDP_ChatUser
 
         }
     }
-    }
+}

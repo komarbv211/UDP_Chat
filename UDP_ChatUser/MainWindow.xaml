@@ -14,12 +14,14 @@
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0">
             <TextBlock Text="Ip Address:" Margin="5" DockPanel.Dock="Left" />
-            <TextBox x:Name="IpTextBox" Width="250" Margin="5"/>
+            <ComboBox Name="IpComboBox" Width="250" Margin="5" IsEditable="True"/>
         </DockPanel>
 
         <DockPanel Grid.Row="1">
-            <TextBlock Text="Port:" Margin="5"/>
-            <TextBox x:Name="PortTextBox" Width="200" Margin="5"/>
+
+            <!--<TextBlock Text="Port:" Margin="5"/>
+            <TextBox x:Name="PortTextBox" Width="200" Margin="5"/>-->
+            
         </DockPanel>
         <DockPanel Grid.Row="2">
             <Button Content="Connect" Click="Button_Click" Width="100" Margin="5"/>

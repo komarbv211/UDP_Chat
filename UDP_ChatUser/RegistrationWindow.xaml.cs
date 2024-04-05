@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace UDP_ChatUser
 {
@@ -37,6 +38,7 @@ namespace UDP_ChatUser
 
                         if (msg == "Registration successful!")
                         {
+                            PanelClear();
                             this.Close();
                         }
                     }
@@ -75,8 +77,6 @@ namespace UDP_ChatUser
             // Виклик функції реєстрації з введеними даними
             RegistrationCommand($"registration:{fullName}:{email}:{password}");
 
-            // Очистка полів вводу після реєстрації
-            PanelClear();
         }
 
         private void PanelClear()

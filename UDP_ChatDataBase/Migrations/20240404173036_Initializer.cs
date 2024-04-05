@@ -60,8 +60,8 @@ namespace UDP_ChatDataBase.Migrations
                 columns: new[] { "Id", "Content", "Timestamp", "UsersId" },
                 values: new object[,]
                 {
-                    { 1, "Hello World", new DateTime(2024, 3, 31, 22, 4, 48, 37, DateTimeKind.Local).AddTicks(7021), 1 },
-                    { 2, "Hello ", new DateTime(2024, 3, 31, 22, 4, 48, 37, DateTimeKind.Local).AddTicks(7098), 1 }
+                    { 1, "Hello World", new DateTime(2024, 4, 4, 20, 30, 35, 537, DateTimeKind.Local).AddTicks(6295), 1 },
+                    { 2, "Hello", new DateTime(2024, 4, 4, 20, 30, 36, 537, DateTimeKind.Local).AddTicks(6295), 1 }
                 });
 
             migrationBuilder.CreateIndex(
