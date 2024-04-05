@@ -47,7 +47,6 @@ namespace UDP_ChatUser
                 return null;
             }
         }
-
         private async void ListUserButton_Click(object sender, RoutedEventArgs e)
         {
             string response = await SendAdminCommand("adminAction:GetListAllUsers:");
@@ -56,7 +55,6 @@ namespace UDP_ChatUser
                 UserDataListBox_Admin.Items.Add(response);
             }
         }
-
         private async void SearchByIdButton_Click_Admin(object sender, RoutedEventArgs e)
         {
             string userId = SearchIdTextBox_Admin.Text.Trim();
@@ -73,7 +71,6 @@ namespace UDP_ChatUser
                 MessageBox.Show("Please enter a valid user ID.");
             }
         }
-
         private async void GrantAdminRightsButton_Click(object sender, RoutedEventArgs e)
         {
             string userId = SearchIdTextBox_Admin.Text.Trim();
@@ -106,7 +103,6 @@ namespace UDP_ChatUser
                 MessageBox.Show("Please enter a valid user ID.");
             }
         }
-
         private async void DeleteUserButton_Click(object sender, RoutedEventArgs e)
         {
             await SendAdminCommand("adminAction:deleteUser:" + SearchIdTextBox_Admin.Text);
@@ -122,7 +118,6 @@ namespace UDP_ChatUser
             isListening = true;
             Listen();
         }
-
         private void LeaveButtonClick(object sender, RoutedEventArgs e)
         {
             SendMessage("<leave>");
@@ -147,7 +142,6 @@ namespace UDP_ChatUser
                 SendMessageDataBase(txtBox.Text);
             }
         }
-
         private async void Listen()
         {
             while (isListening)

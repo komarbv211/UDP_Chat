@@ -82,12 +82,10 @@ namespace UDP_ChatServer
 
         private async Task ProcessAdminAction(string[] messageParts, IPEndPoint clientEndPoint, UdpClient server)
         {
-            // Перевірка на дійсність повідомлення та обробка дії адміністратора
             if (messageParts.Length >= 3)
             {
                 string action = messageParts[1];
                 string userID =messageParts[2];
-                // Виконання дії адміністратора відповідно до отриманого повідомлення
                 switch (action)
                 {
                     case "searchForUserMessages":

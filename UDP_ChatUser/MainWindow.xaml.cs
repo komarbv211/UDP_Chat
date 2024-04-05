@@ -20,7 +20,10 @@ namespace UDP_ChatUser
         {
             InitializeComponent();
             Port = 1234;
-
+            DownloadFromFile();
+        }
+        private void DownloadFromFile()
+        {
             string filePath = "IpAddress.txt";
             if (File.Exists(filePath) && new FileInfo(filePath).Length > 0)
             {
@@ -34,7 +37,7 @@ namespace UDP_ChatUser
                             IpComboBox.Items.Add(line);
                         }
                     }
-                   // IpComboBox.SelectedIndex = 0;
+                    // IpComboBox.SelectedIndex = 0;
                 }
                 catch (Exception ex)
                 {
@@ -46,8 +49,8 @@ namespace UDP_ChatUser
                 IpComboBox.Items.Add("127.0.0.1");
                 //IpComboBox.SelectedIndex = 0;
             }
-        }
 
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (IpComboBox.Text == "")
